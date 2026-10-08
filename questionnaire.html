@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Do You Feel Online? A 12-Question Check-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#12040A;--panel:rgba(74,14,31,.42);--ink:#FDEBF0;--mute:#CFA3AF;--rose:#FF4D6D;--wine:#8E1B3A;--gold:#FFC98B;--edge:rgba(255,77,109,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 700px at 80% -10%,#4A0E1F 0,transparent 60%),radial-gradient(900px 600px at 0% 100%,#34091A 0,transparent 55%),var(--bg);color:var(--ink);font:18px/1.55 "Space Grotesk",system-ui,sans-serif;min-height:100vh}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:30px 18px 70px}
+h1,h2,.num{font-family:Orbitron,"Space Grotesk",sans-serif}
+h1{font-size:clamp(2rem,7vw,3rem);font-weight:800;line-height:1.1;margin:0 0 14px;letter-spacing:.01em;text-shadow:0 0 28px rgba(255,77,109,.45)}
+h2{font-size:1.1rem;font-weight:500;color:var(--gold);margin:26px 0 10px;letter-spacing:.04em}
+p{margin:0 0 12px}.mute{color:var(--mute)}
+.orb{width:150px;height:150px;border-radius:50%;margin:10px auto 26px;position:relative;background:radial-gradient(circle at 35% 30%,#FF7A93,#B01E45 45%,#3B0916 85%);box-shadow:0 0 60px rgba(255,77,109,.55),inset 0 0 30px rgba(0,0,0,.5);animation:pulse 4s ease-in-out infinite}
+.orb::before,.orb::after{content:"";position:absolute;inset:-16px;border-radius:50%;border:2px dashed rgba(255,201,139,.6);animation:spin 14s linear infinite}
+.orb::after{inset:-32px;border:1px solid rgba(255,77,109,.5);border-top-color:var(--gold);animation-duration:7s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.07)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.btn{display:block;width:100%;text-align:left;background:var(--panel);color:var(--ink);border:1.5px solid var(--edge);border-radius:14px;padding:14px 18px;margin-bottom:10px;font:500 1rem "Space Grotesk",sans-serif;cursor:pointer;backdrop-filter:blur(8px);transition:transform .2s,box-shadow .2s,border-color .2s,background .2s}
+.btn:hover{border-color:var(--rose);transform:translateX(6px);box-shadow:0 0 22px rgba(255,77,109,.35)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn.on{background:linear-gradient(90deg,var(--wine),rgba(142,27,58,.4));border-color:var(--rose)}
+.go{text-align:center;font:700 1.05rem Orbitron,sans-serif;background:linear-gradient(90deg,#B01E45,#FF4D6D);border-color:transparent;letter-spacing:.06em;box-shadow:0 0 30px rgba(255,77,109,.5)}
+.go:hover{transform:scale(1.03)}
+.back{background:none;border:0;color:var(--mute);font:500 1rem "Space Grotesk",sans-serif;cursor:pointer;padding:8px 0}
+.prog{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin:8px 0}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold));box-shadow:0 0 14px var(--rose);transition:width .5s}
+.qcard{background:var(--panel);border:1.5px solid var(--edge);border-radius:24px;padding:30px 24px;margin:20px 0;backdrop-filter:blur(10px);animation:rise .45s both}
+.qcard p{font:500 clamp(1.25rem,4.6vw,1.65rem)/1.35 Orbitron,sans-serif;margin:0}
+.panel{background:var(--panel);border:1.5px solid var(--edge);border-radius:20px;padding:18px 20px;margin-bottom:14px;backdrop-filter:blur(8px);animation:rise .6s both}
+.ringbox{position:relative;width:260px;height:260px;margin:22px auto}
+.ringbox svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ringbox .dash{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(255,201,139,.45);animation:spin 20s linear infinite}
+.ringbox .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.num{font-size:3.4rem;font-weight:800;line-height:1;text-shadow:0 0 24px var(--rose)}
+.meter{height:10px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden;margin:10px 0}
+.meter i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold));box-shadow:0 0 12px var(--rose);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.tag{display:inline-block;font-weight:700;font-size:.8rem;border-radius:999px;padding:2px 12px;margin-left:8px;border:1px solid var(--gold);color:var(--gold)}
+[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><canvas id="bg" aria-hidden="true"></canvas><main>
+
+<section id="start">
+<div class="orb" aria-hidden="true"></div>
+<h1>How do you feel online?</h1>
+<p>Think about your life on phones, social media, games and the internet. Read each sentence and pick how true it is for you. 12 quick questions.</p>
+<p class="mute">There are no right or wrong answers. Your answers stay on your device and are not saved or sent anywhere. Your score appears only after the last question.</p>
+<button class="btn go" id="begin">START THE CHECK-IN</button>
+</section>
+
+<section id="quiz" hidden>
+<p class="mute" id="count" style="margin:0"></p>
+<div class="prog"><i id="bar"></i></div>
+<div class="qcard" id="qc"><p id="qtext"></p></div>
+<div id="choices"></div>
+<button class="back" id="back">← Previous question</button>
+</section>
+
+<section id="result" hidden>
+<h1>Your results</h1>
+<div class="ringbox"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="10"/><circle id="arc" cx="100" cy="100" r="88" fill="none" stroke="#FF4D6D" stroke-width="10" stroke-linecap="round" stroke-dasharray="553" stroke-dashoffset="553" style="filter:drop-shadow(0 0 8px #FF4D6D);transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/></svg><div class="dash"></div><div class="in"><span class="num" id="total">0</span><span class="mute">out of 12</span></div></div>
+<p id="totalNote" style="text-align:center;font-weight:700;font-size:1.15rem"></p>
+<h2>WHAT WAS THIS CHECK-IN?</h2>
+<div class="panel"><p>It was a short self-reflection based on two well-known psychologists, Carl Rogers and Abraham Maslow. They believed people are healthiest when they feel accepted, can be themselves, and keep growing. This check-in asks whether your online life supports those things.</p>
+<p class="mute" style="margin:0">It is not a medical test and cannot diagnose anything. Use it to think about your habits.</p></div>
+<h2>HOW THE SCORE WORKS</h2>
+<div class="panel"><p class="mute" style="margin:0;font-size:.95rem">There were 12 questions, and each is worth up to 1 point. "Completely true" gives 1 point, "Not true at all" gives 0, and the answers in between give part of a point. For the three negative statements (like "Social media makes me feel worse"), it works the other way round, so a low answer earns more. The best possible score is 12.</p></div>
+<h2>YOUR SCORE IN 4 AREAS (EACH OUT OF 3)</h2>
+<div id="areas"></div>
+<h2>WHAT TO DO NEXT</h2>
+<div class="panel"><p style="margin:0">Pick your lowest area and try one small change this week. If something online is making you feel unsafe or very low, talk to someone you trust.</p></div>
+<button class="btn go" id="again">TAKE IT AGAIN</button>
+</section>
+
+<script>
+var A=[
+{n:"Being yourself online",d:"Do you show your real self, or a fake version, online?",
+ hi:"You mostly act like yourself online. That is good for your mind.",mid:"Sometimes you hold back or put on a show. That is normal, but notice when it happens.",lo:"You often feel you must act fake online. Try sharing small real things with people you trust.",
+ q:[["My online profiles show who I really am.",0],["I feel I must act differently online than how I feel inside.",1],["I can say what I really think online without being afraid of other people's reactions.",0]]},
+{n:"Kindness to others online",d:"Do you understand and respect others, and do you feel respected back?",
+ hi:"You treat people kindly online and feel accepted. Keep it up.",mid:"You are fairly kind, but sometimes react fast. Pausing before replying helps.",lo:"Online spaces may feel harsh or you may react quickly. Try to remember there is a real person behind every post.",
+ q:[["Online, I try to understand how someone feels before I reply.",0],["I stay polite even when I disagree with someone online.",0],["The places I use online make me feel accepted for who I am.",0]]},
+{n:"Technology helping you grow",d:"Does your online time make your life better or worse?",
+ hi:"Technology is helping you learn and grow. Great use of your time.",mid:"Your online time helps sometimes and drains you at other times. Think about what gives you energy.",lo:"Your online time may be pulling you down. Try cutting the apps that make you feel worse.",
+ q:[["I use technology to learn things and work toward goals that matter to me.",0],["Social media often makes me feel worse about myself.",1],["What I do online matches what I believe is right.",0]]},
+{n:"Feeling safe and in control",d:"Do you feel in charge of your privacy and security?",
+ hi:"You feel in control and you protect yourself by choice. That is the strongest kind of safety.",mid:"You have some control, but there are gaps. Check your privacy settings this week.",lo:"You may feel unsure or controlled. Learn one new safety habit, like two-step login, and take it from there.",
+ q:[["I feel in control of my personal information and privacy settings.",0],["I use safe habits (like strong passwords) because I care about protecting myself, not just because I'm told to.",0],["Security rules at my school or work make me feel like I'm not trusted.",1]]}
+];
+var Q=[];A.forEach(function(a,i){a.q.forEach(function(q){Q.push({t:q[0],r:q[1],a:i})})});
+var L=["Not true at all","A little true","Somewhat true","Mostly true","Completely true"],ans=[],cur=0,$=function(x){return document.getElementById(x)};
+var calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function show(id){["start","quiz","result"].forEach(function(s){$(s).hidden=s!==id});window.scrollTo(0,0)}
+function draw(){$("count").textContent="Question "+(cur+1)+" of "+Q.length;$("bar").style.width=((cur+1)/Q.length*100)+"%";$("qtext").textContent=Q[cur].t;
+var c=$("qc");c.style.animation="none";void c.offsetWidth;c.style.animation="";
+$("choices").innerHTML="";L.forEach(function(l,k){var b=document.createElement("button");b.className="btn"+(ans[cur]===k+1?" on":"");b.textContent=l;
+b.onclick=function(){ans[cur]=k+1;if(cur<Q.length-1){cur++;draw()}else finish()};$("choices").appendChild(b)});$("back").style.visibility=cur?"visible":"hidden"}
+function fmt(x){return String(Math.round(x*100)/100)}
+function finish(){var s=[0,0,0,0],t=0;Q.forEach(function(q,i){var v=q.r?6-ans[i]:ans[i],pt=(v-1)/4;s[q.a]+=pt;t+=pt});
+var p=t/12;$("totalNote").textContent=p>=.7?"You are doing well online.":p>=.4?"You are in the middle, with room to improve.":"There is real room to grow. That is okay.";
+$("areas").innerHTML=A.map(function(a,i){var v=s[i],f=v/3,lv=f>=.8?"Doing great":f>=.5?"In the middle":"Room to grow",m=f>=.8?a.hi:f>=.5?a.mid:a.lo;
+return '<div class="panel"><b>'+a.n+'</b><span class="tag">'+lv+'</span><p class="mute" style="margin:4px 0 0;font-size:.95rem">'+a.d+'</p><div class="meter"><i data-w="'+(f*100)+'"></i></div><p style="margin:0"><b>'+fmt(v)+' out of 3.</b> '+m+'</p></div>'}).join("");
+show("result");$("total").textContent="0";
+setTimeout(function(){$("arc").style.strokeDashoffset=553*(1-p);document.querySelectorAll(".meter i").forEach(function(e){e.style.width=e.dataset.w+"%"});
+var st=null;function tick(ts){st=st||ts;var k=Math.min((ts-st)/1600,1);$("total").textContent=fmt(t*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick)}
+if(calm)$("total").textContent=fmt(t);else requestAnimationFrame(tick)},150)}
+$("begin").onclick=function(){ans=[];cur=0;show("quiz");draw()};
+$("back").onclick=function(){if(cur>0){cur--;draw()}};
+$("again").onclick=function(){show("start")};
+/* drifting network background */
+(function(){var cv=$("bg"),x=cv.getContext("2d"),W,H,N=[],m={x:-999,y:-999};
+function size(){var d=devicePixelRatio||1;W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0);N=[];var n=Math.min(70,Math.floor(W*H/18000));for(var i=0;i<n;i++)N.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.8})}
+function frame(){x.clearRect(0,0,W,H);N.forEach(function(a,i){if(!calm){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;var dx=a.x-m.x,dy=a.y-m.y,d=Math.hypot(dx,dy);if(d<140){a.x+=dx/d*1.2;a.y+=dy/d*1.2}}
+x.beginPath();x.arc(a.x,a.y,a.r,0,7);x.fillStyle="rgba(255,120,150,.8)";x.shadowColor="#FF4D6D";x.shadowBlur=10;x.fill();x.shadowBlur=0;
+for(var j=i+1;j<N.length;j++){var b=N[j],e=Math.hypot(a.x-b.x,a.y-b.y);if(e<150){x.strokeStyle="rgba(255,77,109,"+(.28*(1-e/150))+")";x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}});
+if(!calm)requestAnimationFrame(frame)}
+addEventListener("resize",function(){size();if(calm)frame()});addEventListener("pointermove",function(e){m.x=e.clientX;m.y=e.clientY});
+size();frame()})();
+</script></main></body></html>
