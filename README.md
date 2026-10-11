@@ -4,7 +4,7 @@ A 12-question humanistic check-in on how you feel online, based on Carl Rogers a
 
 A short, free self-reflection questionnaire about life online, built for the course *Advanced Theories in Cyberpsychology*.
 
-**Try it:** [https://YOUR-USERNAME.github.io/REPOSITORY-NAME/questionnaire.html](https://zainabnawabi.github.io/online-wellbeing-checkin/questionnaire.html)
+**Try it:** https://zainabnawabi.github.io/online-wellbeing-checkin/questionnaire.html
 
 ## What is it?
 The check-in asks 12 simple questions about phones, social media, games and the internet. It is based on humanistic psychology, especially the ideas of Carl Rogers (being yourself and feeling accepted) and Abraham Maslow (safety, belonging and growth).
